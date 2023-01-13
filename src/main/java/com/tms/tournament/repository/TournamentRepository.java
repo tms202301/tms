@@ -8,4 +8,5 @@ import com.tms.tournament.repository.entity.TournamentEntity;
 @Repository
 public interface TournamentRepository extends JpaRepository<TournamentEntity, Long> {
 
+
 }

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity(name = "TOURNAMENTS")
 public class TournamentEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long recordId;
 	private String name;
 	private Long fromDate;
@@ -23,6 +23,7 @@ public class TournamentEntity {
 	private Long admisionStart;
 	private Long admisionEnd;
 	private String id;
+	private byte[] logoData;
 	
 	public Long getRecordId() {
 		return recordId;
@@ -108,6 +109,11 @@ public class TournamentEntity {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+	public byte[] getLogoData() {
+		return logoData;
+	}
+	public void setLogoData(byte[] logoData) {
+		this.logoData = logoData;
+	}
 	
 }

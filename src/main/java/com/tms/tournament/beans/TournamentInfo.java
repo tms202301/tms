@@ -15,6 +15,7 @@ public class TournamentInfo {
 	private Long admisionEnd;
 	private Long recordId;
 	private String id;
+	private byte[] logoData;
 	
 	public String getName() {
 		return name;
@@ -99,6 +100,12 @@ public class TournamentInfo {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public byte[] getLogoData() {
+		return logoData;
+	}
+	public void setLogoData(byte[] logoData) {
+		this.logoData = logoData;
 	}
 	
 }
