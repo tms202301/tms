@@ -1,15 +1,15 @@
 package com.tms.tournament.repository.entity;
 
+import com.tms.commons.repository.AuditListener;
+import com.tms.commons.repository.BaseEntity;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.EntityListeners;
 
 @Entity(name = "TOURNAMENTS")
-public class TournamentEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long recordId;
+@EntityListeners(AuditListener.class)
+public class TournamentEntity extends BaseEntity {
+	
 	private String name;
 	private Long fromDate;
 	private Long toDate;
@@ -25,12 +25,6 @@ public class TournamentEntity {
 	private String id;
 	private byte[] logoData;
 	
-	public Long getRecordId() {
-		return recordId;
-	}
-	public void setRecordId(Long recordId) {
-		this.recordId = recordId;
-	}
 	public String getName() {
 		return name;
 	}
