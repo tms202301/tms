@@ -37,7 +37,7 @@ public class TournamentEntity extends BaseEntity {
 	private Long admisionEnd;
 	@Column(name = "TN_ID")
 	private String id;
-	@Column(name = "LOGO_DATA")
+	@Column(name = "LOGO_DATA", columnDefinition = "blob")
 	private byte[] logoData;
 	
 	public String getName() {
