@@ -53,4 +53,14 @@ public class TournamentController {
 		return service.uploadLog(file, recordId);
 	}
 	
+	@PostMapping(path = "/upcoming/list")
+	public List<TournamentInfo> activeList(@RequestBody TournamentInfo request) {
+		return service.findUpcmingTournaments();
+	}
+	
+	@PostMapping(path = "/older/list")
+	public List<TournamentInfo> olderList(@RequestBody TournamentInfo request) {
+		return service.findOlderTournaments();
+	}
+	
 }

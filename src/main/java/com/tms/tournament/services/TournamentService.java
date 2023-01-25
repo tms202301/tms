@@ -1,6 +1,9 @@
 package com.tms.tournament.services;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +28,11 @@ public class TournamentService {
 	public List<TournamentInfo> findAllTournaments() {
 		List<TournamentEntity> list = Lists.newArrayList();
 		list = tournamentRepository.findAll();
+		List<TournamentInfo> infoList = convertToInfo(list);
+		return infoList;
+	}
+
+	private List<TournamentInfo> convertToInfo(List<TournamentEntity> list) {
 		List<TournamentInfo> infoList = list.stream().map(e -> TournamentUtils.covertTournamentInfo(e)).collect(Collectors.toList());
 		return infoList;
 	}
@@ -62,7 +70,6 @@ public class TournamentService {
 			if(entity.isPresent()) {
 				TournamentEntity e = entity.get();
 				try {
-					System.out.println("Logo Data =>"+multipartFile.getBytes());
 					e.setLogoData(multipartFile.getBytes());
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -71,6 +78,24 @@ public class TournamentService {
 			}
 		}
 		return findAllTournaments();
+	}
+
+	public List<TournamentInfo> findUpcmingTournaments() {
+		LocalDateTime dateTime = LocalDateTime.now();
+		ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, ZoneId.systemDefault());
+        long date = zonedDateTime.toInstant().toEpochMilli();
+		List<TournamentEntity> list = tournamentRepository.findByFromDateGreaterThan(date);
+		List<TournamentInfo> infoList = convertToInfo(list);
+		return infoList;
+	}
+	
+	public List<TournamentInfo> findOlderTournaments() {
+		LocalDateTime dateTime = LocalDateTime.now();
+		ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, ZoneId.systemDefault());
+        long date = zonedDateTime.toInstant().toEpochMilli();
+		List<TournamentEntity> list = tournamentRepository.findByFromDateLessThan(date);
+		List<TournamentInfo> infoList = convertToInfo(list);
+		return infoList;
 	}
 	
 	
