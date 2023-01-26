@@ -15,4 +15,11 @@ public class DistrictEntity extends BaseEntity{
 	
 	@ManyToOne
 	StateEntity stateEntity;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

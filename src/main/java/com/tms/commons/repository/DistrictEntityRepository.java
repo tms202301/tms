@@ -13,5 +13,5 @@ import com.tms.tournament.repository.entity.TournamentEntity;
 public interface DistrictEntityRepository extends JpaRepository<DistrictEntity, Long> {
 	
 	List<DistrictEntity> findAll();
-	List<DistrictEntity> findBystateEntity(Long recordId);
+	List<DistrictEntity> findBystateEntityRecordId(Long recordId);
 }
