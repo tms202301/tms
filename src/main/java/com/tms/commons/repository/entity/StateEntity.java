@@ -11,4 +11,13 @@ import jakarta.persistence.EntityListeners;
 public class StateEntity extends BaseEntity{
 	@Column(name = "NAME")
 	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
