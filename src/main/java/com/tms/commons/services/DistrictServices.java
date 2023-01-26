@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.tms.commons.beans.DistrictInfo;
-import com.tms.commons.repository.DistrictEntityRepository;
+import com.tms.commons.repository.StateEntityRepository;
 import com.tms.commons.repository.entity.DistrictEntity;
 import com.tms.commons.utils.CommonsUtil;
 import com.tms.commons.utils.Lists;
@@ -14,12 +14,13 @@ import com.tms.commons.utils.Lists;
 @Component
 public class DistrictServices {
 
+	
 	@Autowired
-	private DistrictEntityRepository districtEntityRepository;
-
+	private StateEntityRepository stateEntityRepository;
+	 
 	public List<DistrictInfo> findDistrictByStates(Long stateId) {
-		List<DistrictEntity> list = Lists.newArrayList();
-		list = districtEntityRepository.findBystateEntityRecordId(stateId);
+		List<DistrictEntity> list = Lists.newArrayList();		
+		list = stateEntityRepository.findById(stateId).get().getDistrictList();
 		List<DistrictInfo> infoList = convertToInfo(list);
 		return infoList;
 	}

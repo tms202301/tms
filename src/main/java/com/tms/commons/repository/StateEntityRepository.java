@@ -9,4 +9,5 @@ import com.tms.commons.repository.entity.StateEntity;
 public interface StateEntityRepository extends JpaRepository<StateEntity, Long> {
 	
 	List<StateEntity> findAll();
+	
 }
