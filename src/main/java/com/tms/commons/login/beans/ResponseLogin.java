@@ -5,6 +5,8 @@ public class ResponseLogin {
 	private String firstName;
 	private String lastName;
 	private String userName;
+	private Long mobileNumber;
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -22,6 +24,12 @@ public class ResponseLogin {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public Long getMobileNumber() {
+		return mobileNumber;
+	}
+	public void setMobileNumber(Long mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 	
 	
