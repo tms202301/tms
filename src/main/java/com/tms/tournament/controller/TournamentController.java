@@ -2,6 +2,10 @@ package com.tms.tournament.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,38 +26,45 @@ import com.tms.tournament.services.TournamentService;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path = "/tournament")
+@Tag(name = "Tournaments Endpoints")
 public class TournamentController {
 	
 	@Autowired
 	private TournamentService service;
 	
 	@PostMapping(path = "/list")
+	@Operation(summary = "List of Tournaments")
 	public List<TournamentInfo> list(@RequestBody TournamentInfo request) {
 		return service.findAllTournaments();
 	}
 	
 	@GetMapping(path = "/find")
+	@Operation(summary = "Find Tournament")
 	public TournamentInfo findTournament(@RequestParam Long recordId) {
 		return service.findTournament(recordId);
 	}
 	
 	@PostMapping(path = "/add")
+	@Operation(summary = "Add Tournament")
 	public List<TournamentInfo> add(@RequestBody TournamentInfo request) {
 		return service.savOrUpdate(request);
 	}
 	
 	@DeleteMapping(path = "/delete")
+	@Operation(summary = "Delete Tournament")
 	public List<TournamentInfo> add(@RequestParam Long recordId) {
 		return service.delete(recordId);
 	}
 	
 	@RequestMapping(path = "/upload/logo", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	@Operation(summary = "Upload Tournament Logo")
 	public List<TournamentInfo> uploadLogo(@RequestPart MultipartFile file, @RequestParam Long recordId) {
 		System.out.println("File Information =>"+file+ " : "+recordId);
 		return service.uploadLog(file, recordId);
 	}
 	
 	@PostMapping(path = "/upcoming/list")
+	@Operation(summary = "Upcoming List of Tournaments")
 	public List<TournamentInfo> activeList(@RequestBody TournamentInfo request) {
 		return service.findUpcmingTournaments();
 	}
