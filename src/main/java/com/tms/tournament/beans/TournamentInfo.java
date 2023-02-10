@@ -1,5 +1,10 @@
 package com.tms.tournament.beans;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class TournamentInfo {
 	private String name;
 	private Long fromDate;
@@ -16,96 +21,5 @@ public class TournamentInfo {
 	private Long recordId;
 	private String id;
 	private byte[] logoData;
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Long getFromDate() {
-		return fromDate;
-	}
-	public void setFromDate(Long fromDate) {
-		this.fromDate = fromDate;
-	}
-	public Long getToDate() {
-		return toDate;
-	}
-	public void setToDate(Long toDate) {
-		this.toDate = toDate;
-	}
-	public String getVenue() {
-		return venue;
-	}
-	public void setVenue(String venue) {
-		this.venue = venue;
-	}
-	public String getGameName() {
-		return gameName;
-	}
-	public void setGameName(String gameName) {
-		this.gameName = gameName;
-	}
-	public Integer getType() {
-		return type;
-	}
-	public void setType(Integer type) {
-		this.type = type;
-	}
-	public Integer getCategory() {
-		return category;
-	}
-	public void setCategory(Integer category) {
-		this.category = category;
-	}
-	public String getPromoters() {
-		return promoters;
-	}
-	public void setPromoters(String promoters) {
-		this.promoters = promoters;
-	}
-	public String getOrganizer() {
-		return organizer;
-	}
-	public void setOrganizer(String organizer) {
-		this.organizer = organizer;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public Long getAdmisionStart() {
-		return admisionStart;
-	}
-	public void setAdmisionStart(Long admisionStart) {
-		this.admisionStart = admisionStart;
-	}
-	public Long getAdmisionEnd() {
-		return admisionEnd;
-	}
-	public void setAdmisionEnd(Long admisionEnd) {
-		this.admisionEnd = admisionEnd;
-	}
-	public Long getRecordId() {
-		return recordId;
-	}
-	public void setRecordId(Long recordId) {
-		this.recordId = recordId;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public byte[] getLogoData() {
-		return logoData;
-	}
-	public void setLogoData(byte[] logoData) {
-		this.logoData = logoData;
-	}
 	
 }

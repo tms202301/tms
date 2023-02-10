@@ -2,14 +2,13 @@ package com.tms.commons.controller;
 
 import java.util.List;
 
+import com.tms.commons.utils.TmsCodes;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.tms.commons.beans.TmsUserInfo;
 import com.tms.commons.services.TmsUserService;
@@ -32,8 +31,19 @@ public class TmsUserController {
 	
 	@PostMapping(path = "/list")
 	@Operation(summary = "List of Users")
-	public List<TmsUserInfo> userList(@RequestBody TmsUserInfo request) {
-		return tmsUserService.list(request);
+	public ResponseEntity<List<TmsUserInfo>> userList(@RequestBody TmsUserInfo request) {
+		List<TmsUserInfo> list = tmsUserService.list(request);
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(list);
+	}
+
+	@DeleteMapping(path = "/delete")
+	@Operation(summary = "Delete User")
+	public ResponseEntity<String> deleteUser(@RequestParam("recordId") Long recordId) {
+		String status = tmsUserService.deleteUser(recordId);
+		if(TmsCodes.FAIL.name().equalsIgnoreCase(status)) {
+			return ResponseEntity.status(HttpStatusCode.valueOf(406)).body(TmsCodes.FAIL.name());
+		}
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(TmsCodes.SUCCESS.name());
 	}
 
 }
