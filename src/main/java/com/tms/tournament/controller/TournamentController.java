@@ -2,12 +2,15 @@ package com.tms.tournament.controller;
 
 import java.util.List;
 
+import com.tms.tournament.beans.TournamentResponse;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,44 +37,43 @@ public class TournamentController {
 	
 	@PostMapping(path = "/list")
 	@Operation(summary = "List of Tournaments")
-	public List<TournamentInfo> list(@RequestBody TournamentInfo request) {
-		return service.findAllTournaments();
+	public ResponseEntity<TournamentResponse> list(@RequestBody TournamentInfo request) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(service.findAllTournaments());
 	}
 	
 	@GetMapping(path = "/find")
 	@Operation(summary = "Find Tournament")
-	public TournamentInfo findTournament(@RequestParam Long recordId) {
-		return service.findTournament(recordId);
+	public ResponseEntity<TournamentInfo> findTournament(@RequestParam Long recordId) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(service.findTournament(recordId));
 	}
 	
 	@PostMapping(path = "/add")
 	@Operation(summary = "Add Tournament")
-	public List<TournamentInfo> add(@RequestBody TournamentInfo request) {
-		return service.savOrUpdate(request);
+	public ResponseEntity<TournamentResponse> add(@RequestBody TournamentInfo request) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(service.savOrUpdate(request));
 	}
 	
 	@DeleteMapping(path = "/delete")
 	@Operation(summary = "Delete Tournament")
-	public List<TournamentInfo> add(@RequestParam Long recordId) {
-		return service.delete(recordId);
+	public ResponseEntity<TournamentResponse> add(@RequestParam Long recordId) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(service.delete(recordId));
 	}
 	
 	@RequestMapping(path = "/upload/logo", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	@Operation(summary = "Upload Tournament Logo")
-	public List<TournamentInfo> uploadLogo(@RequestPart MultipartFile file, @RequestParam Long recordId) {
-		System.out.println("File Information =>"+file+ " : "+recordId);
-		return service.uploadLog(file, recordId);
+	public ResponseEntity<TournamentResponse> uploadLogo(@RequestPart MultipartFile file, @RequestParam Long recordId) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(service.uploadLog(file, recordId));
 	}
 	
 	@PostMapping(path = "/upcoming/list")
 	@Operation(summary = "Upcoming List of Tournaments")
-	public List<TournamentInfo> activeList(@RequestBody TournamentInfo request) {
-		return service.findUpcmingTournaments();
+	public ResponseEntity<TournamentResponse> activeList(@RequestBody TournamentInfo request) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(service.findUpcmingTournaments());
 	}
 	
 	@PostMapping(path = "/older/list")
-	public List<TournamentInfo> olderList(@RequestBody TournamentInfo request) {
-		return service.findOlderTournaments();
+	public ResponseEntity<TournamentResponse> olderList(@RequestBody TournamentInfo request) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(service.findOlderTournaments());
 	}
 	
 }
