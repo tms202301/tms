@@ -2,6 +2,7 @@ package com.tms.commons.controller;
 
 import java.util.List;
 
+import com.tms.commons.beans.TmsUserResponse;
 import com.tms.commons.utils.TmsCodes;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,16 +25,14 @@ public class TmsUserController {
 	
 	@PostMapping(path = "/add")
 	@Operation(summary = "Add User")
-	public List<TmsUserInfo> addUser(@RequestBody TmsUserInfo request) {
-		System.out.println("Request =>>>>>>>>>>>>>>>>>>>>>>>>>>"+request);
-		return tmsUserService.addUser(request);
+	public ResponseEntity<TmsUserResponse> addUser(@RequestBody TmsUserInfo request) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(tmsUserService.addUser(request));
 	}
 	
 	@PostMapping(path = "/list")
 	@Operation(summary = "List of Users")
-	public ResponseEntity<List<TmsUserInfo>> userList(@RequestBody TmsUserInfo request) {
-		List<TmsUserInfo> list = tmsUserService.list(request);
-		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(list);
+	public ResponseEntity<TmsUserResponse> userList(@RequestBody TmsUserInfo request) {
+		return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(tmsUserService.list(request));
 	}
 
 	@DeleteMapping(path = "/delete")

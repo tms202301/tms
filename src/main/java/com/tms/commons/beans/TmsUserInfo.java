@@ -16,4 +16,5 @@ public class TmsUserInfo {
     private Long mobileNumber;
     private String panNumber;
 	private String userType;
+    private Long recordId;
 }

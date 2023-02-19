@@ -9,7 +9,7 @@ import java.util.Map;
 @Getter
 public class BaseResponse {
     private String status;
-    private String errorCode;
-    private String errorMessage;
+    private String messageCode;
+    private String message;
     private Map<Integer, Object> messageParams;
 }

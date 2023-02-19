@@ -1,6 +1,9 @@
 package com.tms.commons.login.beans;
 
-public class ResponseLogin {
+import com.mysql.cj.jdbc.util.BaseBugReport;
+import com.tms.commons.beans.BaseResponse;
+
+public class ResponseLogin extends BaseResponse {
 	
 	private String firstName;
 	private String lastName;

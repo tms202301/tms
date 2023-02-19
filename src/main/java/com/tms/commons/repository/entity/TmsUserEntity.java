@@ -2,14 +2,18 @@ package com.tms.commons.repository.entity;
 
 import com.tms.commons.repository.BaseEntity;
 
+import com.tms.commons.repository.listner.TmsUserListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.PostPersist;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
 @Entity(name = "TMS_USER")
+@EntityListeners(TmsUserListener.class)
 public class TmsUserEntity extends BaseEntity {
 
 	@Column(name = "USER_NAME")
